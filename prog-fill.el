@@ -1,4 +1,4 @@
-;;; prog-fill.el --- Smartly break lines to use vert space. -*- lexical-binding: t; -*-
+;;; prog-fill.el --- Smartly format lines to use vertical space. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018 Matthew Carter <m@ahungry.com>
 
@@ -36,9 +36,10 @@
 ;; Dynamically bind this when modes change
 (defvar prog-fill-method-separators '(or "->" "."))
 (defvar prog-fill-arg-separators '(or ","))
-(defvar prog-fill-break-method-immediately-p t)
+(defvar prog-fill-break-method-immediately-p nil)
 (defvar prog-fill-floating-open-paren-p t)
 (defvar prog-fill-floating-close-paren-p t)
+(defvar prog-fill-auto-indent-p t)
 
 (defun my-prog-fill ()
   "Split multi-argument call into one per line.
@@ -130,9 +131,10 @@ TODO: Handle different arg separators (Lisp style)."
         (while (re-next (rx ?\n (0+ whitespace) eol))
           (replace-match ""))
 
-        (indent-region (point-min) (point-max))
-        (fill-paragraph)))))
+        (when prog-fill-auto-indent-p
+          (indent-region (point-min) (point-max)))
 
+        (fill-paragraph)))))
 
 (provide 'prog-fill)
 
