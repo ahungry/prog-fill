@@ -41,7 +41,7 @@
 (defvar prog-fill-floating-close-paren-p t)
 (defvar prog-fill-auto-indent-p t)
 
-(defun my-prog-fill ()
+(defun prog-fill ()
   "Split multi-argument call into one per line.
 
 TODO: Handle string quotations (do not break them apart).
@@ -135,6 +135,11 @@ TODO: Handle different arg separators (Lisp style)."
           (indent-region (point-min) (point-max)))
 
         (fill-paragraph)))))
+
+;;;###autoload
+(add-hook
+ 'prog-mode-hook
+ (lambda () (local-set-key (kbd "M-q") #'prog-fill)))
 
 (provide 'prog-fill)
 
