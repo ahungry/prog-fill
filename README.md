@@ -55,6 +55,10 @@ Clone the repo, then in your Emacs init file:
 M-x prog-fill ;; to run on current line (ideally, bind to M-q)
 ```
 
+# todo
+- Breaks with matches in comment strings will also break those - need
+  to avoid that!  (or you can avoid string literals :) )
+
 # License
 
 GPLv3
