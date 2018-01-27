@@ -137,11 +137,6 @@ TODO: Handle different arg separators (Lisp style)."
 
         (fill-paragraph)))))
 
-;;;###autoload
-(add-hook
- 'prog-mode-hook
- (lambda () (local-set-key (kbd "M-q") #'prog-fill)))
-
 (provide 'prog-fill)
 
 ;;; prog-fill.el ends here
