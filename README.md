@@ -55,9 +55,9 @@ Clone the repo, then in your Emacs init file:
 M-x prog-fill ;; to run on current line (ideally, bound to M-q)
 ```
 
-## Autoloads
+## Binding
 
-The package will add the following via autoload when required:
+After installing, you should bind the function:
 
 ```lisp
 (add-hook
