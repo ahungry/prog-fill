@@ -86,8 +86,9 @@ TODO: Handle different arg separators (Lisp style)."
         (if prog-fill-break-method-immediately-p
             (progn                    ; This implies breaking on $this
               (goto-char (point-min))
-              (while (re-next (rx
-                               (group (eval prog-fill-method-separators))))
+              (while (re-next (rx-to-string
+                               `(:
+                                 (group ,prog-fill-method-separators))))
                 (replace-match (rx ?\n (backref 1)))))
 
           (progn
