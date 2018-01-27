@@ -6,7 +6,7 @@
 ;; Maintainer: Matthew Carter <m@ahungry.com>
 ;; URL: https://github.com/ahungry/color-theme-ahungry
 ;; Version: 0.0.1
-;; Keywords: ahungry programming readability formatting
+;; Keywords: ahungry convenience c formatting
 ;; Package-Requires: ((emacs "25.1") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
