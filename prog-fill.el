@@ -6,7 +6,7 @@
 ;; Maintainer: Matthew Carter <m@ahungry.com>
 ;; URL: https://github.com/ahungry/color-theme-ahungry
 ;; Version: 0.0.1
-;; Keywords: ahungry convenience c formatting
+;; Keywords: ahungry convenience c formatting editing
 ;; Package-Requires: ((emacs "25.1") (cl-lib "0.6.1"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -36,20 +36,20 @@
 (defgroup prog-fill nil
   "Customizations for prog-fill."
   :tag "Prog Fill"
-  :group 'applications)
+  :group 'editing)
 
 ;; Dynamically bind this when modes change
 (defcustom prog-fill-method-separators '(or "->" ".")
-  "The method separators for prog-fill method breaks.
+  "The method separators for ‘prog-fill’ method breaks.
 
 In C, these would be `->' or `.'
 In Javascript, these would be `.'
 In PHP, these would be `->', `.', or `::'."
   :group 'prog-fill
-  :type '(repeat (string :tag "rx or filters.")))
+  :type 'sexp)
 
 (defcustom prog-fill-arg-separators '(or ",")
-  "The arg separators for prog-fill argument breaks.
+  "The arg separators for ‘prog-fill’ argument breaks.
 
 In C, these would be `,'
 In Lisp, these would be ` ' (space)"
@@ -57,7 +57,7 @@ In Lisp, these would be ` ' (space)"
   :type '(repeat (string :tag "rx or filters.")))
 
 (defcustom prog-fill-break-method-immediately-p nil
-  "If methods in prog-fill calls should break immediately.
+  "If methods in ‘prog-fill’ calls should break immediately.
 
 You may find in some modes you want to break right away on a method,
 while others you do not, for instance in PHP it is common to use:
@@ -76,7 +76,7 @@ call (not the first) - set to t to break on the first."
   :group 'prog-fill
   :type 'boolean)
 
-(defvar prog-fill-floating-open-paren-p t
+(defcustom prog-fill-floating-open-paren-p t
   "With this set to t, it will make a parenthesis `float' by itself.
 
 Such as in PHP:
@@ -96,7 +96,7 @@ The default is t, floating parens."
   :group 'prog-fill
   :type 'boolean)
 
-(defvar prog-fill-floating-close-paren-p t
+(defcustom prog-fill-floating-close-paren-p t
   "With this set to t, it will make a parenthesis `float' by itself.
 
 Such as in PHP:
@@ -116,7 +116,7 @@ The default is t, floating parens."
   :group 'prog-fill
   :type 'boolean)
 
-(defvar prog-fill-auto-indent-p t
+(defcustom prog-fill-auto-indent-p t
   "This controls the behavior of the auto-indent call.
 
 If you disable it (set to nil) this package will not work well,
