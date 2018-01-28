@@ -159,6 +159,7 @@ as it will assign the breaks without indenting them."
   :group 'prog-fill
   :type 'boolean)
 
+;;;###autoload
 (defun prog-fill ()
   "Split multi-argument call into one per line.
 
