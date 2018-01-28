@@ -70,7 +70,7 @@ After installing, you should bind the function:
 ### prog-fill-break-method-immediate-p
 
 You may find in some modes you want to break right away on a method,
-whlie others you do not, for instance in PHP it is common to use:
+while others you do not, for instance in PHP it is common to use:
 
 ```php
 $this->something
@@ -89,8 +89,9 @@ call (not the first) - set to t to break on the first.
 
 ### prog-fill-floating-open-paren-p
 
-With this set to t, it will make a parenthesis "float" by itself, such
-as:
+With this set to t, it will make a parenthesis "float" by itself.
+
+Such as in PHP:
 
 ```php
 $this->that(

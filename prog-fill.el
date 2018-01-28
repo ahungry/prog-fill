@@ -33,13 +33,96 @@
 ;;; Code:
 (require 'cl-lib)
 
+(defgroup prog-fill nil
+  "Customizations for prog-fill."
+  :tag "Prog Fill"
+  :group 'applications)
+
 ;; Dynamically bind this when modes change
-(defvar prog-fill-method-separators '(or "->" "."))
-(defvar prog-fill-arg-separators '(or ","))
-(defvar prog-fill-break-method-immediately-p nil)
-(defvar prog-fill-floating-open-paren-p t)
-(defvar prog-fill-floating-close-paren-p t)
-(defvar prog-fill-auto-indent-p t)
+(defcustom prog-fill-method-separators '(or "->" ".")
+  "The method separators for prog-fill method breaks.
+
+In C, these would be `->' or `.'
+In Javascript, these would be `.'
+In PHP, these would be `->', `.', or `::'."
+  :group 'prog-fill
+  :type '(repeat (string :tag "rx or filters.")))
+
+(defcustom prog-fill-arg-separators '(or ",")
+  "The arg separators for prog-fill argument breaks.
+
+In C, these would be `,'
+In Lisp, these would be ` ' (space)"
+  :group 'prog-fill
+  :type '(repeat (string :tag "rx or filters.")))
+
+(defcustom prog-fill-break-method-immediately-p nil
+  "If methods in prog-fill calls should break immediately.
+
+You may find in some modes you want to break right away on a method,
+while others you do not, for instance in PHP it is common to use:
+
+  $this->something
+    ->anotherThing();
+
+Whlie in JS you would usually see:
+
+  object
+    .something
+    .anotherThing()
+
+The default is nil, meaning it will only break on the second chained
+call (not the first) - set to t to break on the first."
+  :group 'prog-fill
+  :type 'boolean)
+
+(defvar prog-fill-floating-open-paren-p t
+  "With this set to t, it will make a parenthesis `float' by itself.
+
+Such as in PHP:
+
+  $this->that(
+    1,
+    2
+  );
+
+If set to nil, it will *not* float, and will appear as:
+
+  $this->that(1,
+              2
+  );
+
+The default is t, floating parens."
+  :group 'prog-fill
+  :type 'boolean)
+
+(defvar prog-fill-floating-close-paren-p t
+  "With this set to t, it will make a parenthesis `float' by itself.
+
+Such as in PHP:
+
+  $this->that(
+    1,
+    2
+  );
+
+If set to nil, it will *not* float, and will appear as:
+
+  $this->that(
+    1,
+    2);
+
+The default is t, floating parens."
+  :group 'prog-fill
+  :type 'boolean)
+
+(defvar prog-fill-auto-indent-p t
+  "This controls the behavior of the auto-indent call.
+
+If you disable it (set to nil) this package will not work well,
+as it will assign the breaks without indenting them."
+  :group 'prog-fill
+  :type 'boolean)
 
 (defun prog-fill ()
   "Split multi-argument call into one per line.
