@@ -4,7 +4,7 @@
 
 ;; Author: Matthew Carter <m@ahungry.com>
 ;; Maintainer: Matthew Carter <m@ahungry.com>
-;; URL: https://github.com/ahungry/color-theme-ahungry
+;; URL: https://github.com/ahungry/prog-fill
 ;; Version: 0.0.1
 ;; Keywords: ahungry convenience c formatting editing
 ;; Package-Requires: ((emacs "25.1") (cl-lib "0.6.1"))
